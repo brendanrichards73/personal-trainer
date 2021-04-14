@@ -1,5 +1,6 @@
-import * as React from 'react';
+import React, {useState, useEffect} from 'react';
 import {Text, View, StyleSheet} from 'react-native';
+import {getUser} from '../api/api';
 
 const styles = StyleSheet.create({
   container: {
@@ -10,9 +11,16 @@ const styles = StyleSheet.create({
 });
 
 export const Profile = () => {
+  const [name, setName] = useState('');
+  useEffect(() => {
+    getUser().then((response) => {
+      setName(response.first_name);
+    });
+  }, []);
+
   return (
     <View style={styles.container}>
-      <Text>Profile</Text>
+      <Text>{name}</Text>
     </View>
   );
 };
