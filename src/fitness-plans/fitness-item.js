@@ -13,9 +13,6 @@ export const FitnessItem = ({workOutName, id}) => {
   };
   return (
     <>
-      <TouchableOpacity onPress={clickHandler}>
-        <Text>{workOutName}</Text>
-      </TouchableOpacity>
       {exercises.map(({name}) => (
         <Text>{name}</Text>
       ))}
