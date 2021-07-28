@@ -8,14 +8,13 @@ import {Workouts} from '../workouts/workouts';
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: 'space-around',
+    alignItems: 'flex-start',
+    marginLeft: 50,
+    marginVertical: 50,
   },
   button: {
-    flex: 1,
-    justifyContent: 'space-around',
-    padding: 20,
-    color: 'red',
+    width: 300,
   },
 });
 
@@ -44,7 +43,7 @@ export const FitnessPlans = ({navigation}) => {
           title={name}
           style={styles.button}
           onPress={() => navigation.navigate('Workouts')}>
-          {/* <FitnessItem key={id} workOutName={name} id={id} /> */}
+          <FitnessItem key={id} workOutName={name} id={id} />
         </Button>
       ))}
     </View>

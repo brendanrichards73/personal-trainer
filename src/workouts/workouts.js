@@ -13,9 +13,7 @@ const styles = StyleSheet.create({
 export const Workouts = (workouts) => {
   return (
     <View style={styles.container}>
-        {exercises.map(({name}) => (
-        <Text>{name}</Text>
-      ))}
+      <FitnessItem workouts={workouts} />
     </View>
   );
 };

@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Text, TouchableOpacity} from 'react-native';
+import {TouchableOpacity} from 'react-native';
 import {getWorkouts} from '../api/api';
 
 export const FitnessItem = ({workOutName, id}) => {
@@ -14,7 +14,7 @@ export const FitnessItem = ({workOutName, id}) => {
   return (
     <>
       {exercises.map(({name}) => (
-        <Text>{name}</Text>
+        <TouchableOpacity onPress={clickHandler()}>{name}</TouchableOpacity>
       ))}
     </>
   );
