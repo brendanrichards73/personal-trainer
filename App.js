@@ -2,10 +2,10 @@ import * as React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import {Home} from './src/home/home';
-import {FitnessPlansStackScreen} from './src/fitness-plans/fitness-plans';
-import {Settings} from './src/settings/settings';
-import {Profile} from './src/profile/profile';
+import {Home} from './src/pages/home';
+import {FitnessPlansStackScreen} from './src/pages/fitness-plans';
+import {Settings} from './src/pages/settings';
+import {Profile} from './src/pages/profile';
 
 const Tab = createBottomTabNavigator();
 

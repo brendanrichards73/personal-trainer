@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {TouchableOpacity} from 'react-native';
 import {getWorkouts} from '../api/api';
 
-export const FitnessItem = ({workOutName, id}) => {
+export const WorkoutCategory = ({workOutName, id}) => {
   const [exercises, setExercises] = useState([]);
   const clickHandler = () => {
     getWorkouts(id).then((response) => {

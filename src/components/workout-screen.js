@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {View, StyleSheet} from 'react-native';
-import {FitnessItem} from '../fitness-plans/fitness-item';
+import {WorkoutCategory} from './workout-category';
 
 const styles = StyleSheet.create({
   container: {
@@ -10,10 +10,10 @@ const styles = StyleSheet.create({
   },
 });
 
-export const Workouts = (workouts) => {
+export const WorkoutScreen = (workouts) => {
   return (
     <View style={styles.container}>
-      <FitnessItem workouts={workouts} />
+      <WorkoutCategory workouts={workouts} />
     </View>
   );
 };
