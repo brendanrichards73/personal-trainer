@@ -24,7 +24,10 @@ export const FitnessPlansStackScreen = () => {
   return (
     <FitnessPlansStack.Navigator>
       <FitnessPlansStack.Screen name="FitnessPlans" component={FitnessPlans} />
-      <FitnessPlansStack.Screen name="Workouts" component={WorkoutScreen} />
+      <FitnessPlansStack.Screen
+        name="WorkoutScreen"
+        component={WorkoutScreen}
+      />
     </FitnessPlansStack.Navigator>
   );
 };
@@ -42,9 +45,10 @@ export const FitnessPlans = ({navigation}) => {
         <Button
           title={name}
           style={styles.button}
-          onPress={() => navigation.navigate('Workouts')}>
-          <WorkoutCategory key={id} workOutName={name} id={id} />
-        </Button>
+          onPress={() =>
+            navigation.navigate('WorkoutScreen', {workoutCategoryId: id})
+          }
+        />
       ))}
     </View>
   );

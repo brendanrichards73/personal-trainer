@@ -1,6 +1,6 @@
-import * as React from 'react';
-import {View, StyleSheet} from 'react-native';
-import {WorkoutCategory} from './workout-category';
+import React, {useEffect, useState} from 'react';
+import {View, Text, StyleSheet} from 'react-native';
+import {getWorkouts} from '../api/api';
 
 const styles = StyleSheet.create({
   container: {
@@ -10,10 +10,21 @@ const styles = StyleSheet.create({
   },
 });
 
-export const WorkoutScreen = (workouts) => {
+export const WorkoutScreen = ({route}) => {
+  const {workoutCategoryId} = route.params;
+  const [exercises, setExercises] = useState([]);
+  useEffect(() => {
+    getWorkouts(workoutCategoryId).then((response) => {
+      setExercises(response);
+    });
+  }, [workoutCategoryId]);
+
+  console.log(workoutCategoryId);
   return (
     <View style={styles.container}>
-      <WorkoutCategory workouts={workouts} />
+      {exercises.map(({name}) => (
+        <Text>{name}</Text>
+      ))}
     </View>
   );
 };
