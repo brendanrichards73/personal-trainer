@@ -38,7 +38,11 @@ function SettingsScreen() {
 
 const Tab = createBottomTabNavigator();
 
-export default function App() {
+const dependencies = {
+  Ionicons,
+};
+
+export default function App({deps = dependencies}) {
   return (
     <NavigationContainer>
       <Tab.Navigator
@@ -59,8 +63,7 @@ export default function App() {
               iconName = focused ? 'ios-list' : 'ios-list';
             }
 
-
-            return <Ionicons name={iconName} size={size} color={color} />;
+            return <deps.Ionicons name={iconName} size={size} color={color} />;
           },
         })}
         tabBarOptions={{
