@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 import {View, StyleSheet, Button} from 'react-native';
-import {WorkoutCategory} from '../components/workout-category';
 import {getExerciseTypes} from '../api/api';
 import {WorkoutScreen} from '../components/workout-screen';
 
