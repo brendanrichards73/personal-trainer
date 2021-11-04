@@ -1,1 +1,1 @@
-export const removeHTML = () => {};
+export const removeHTML = (input) => input.replace(/<\/?p>/g, '');
