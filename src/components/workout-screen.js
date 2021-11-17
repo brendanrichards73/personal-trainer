@@ -17,18 +17,30 @@ const styles = StyleSheet.create({
 export const WorkoutScreen = ({route}) => {
   const {workoutCategoryId} = route.params;
   const [exercises, setExercises] = useState([]);
+  const [currentlySelectedWorkout, setCurrentlySelectedWorkout] = useState('');
   useEffect(() => {
     getWorkouts(workoutCategoryId).then((response) => {
       setExercises(response);
     });
   }, [workoutCategoryId]);
 
-  console.log(workoutCategoryId);
+  const showDescription = (name) => {
+    currentlySelectedWorkout === name
+      ? setCurrentlySelectedWorkout('')
+      : setCurrentlySelectedWorkout(name);
+  };
+
+  console.log(currentlySelectedWorkout);
   return (
     <View style={styles.container}>
       <ScrollView>
         {exercises.map(({name, description}) => (
-          <WorkoutInfo name={name} description={description} />
+          <WorkoutInfo
+            name={name}
+            description={description}
+            showText={currentlySelectedWorkout === name}
+            onPress={() => showDescription(name)}
+          />
         ))}
       </ScrollView>
     </View>

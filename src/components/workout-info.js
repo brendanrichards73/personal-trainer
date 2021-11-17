@@ -10,16 +10,13 @@ const styles = StyleSheet.create({
   },
 });
 
-export const WorkoutInfo = ({name, description}) => {
-  const [showText, setShowText] = useState(false);
+export const WorkoutInfo = ({name, description, showText, onPress}) => {
   return (
     <>
       <Button
         style={styles.text}
         title={name}
-        onPress={() => {
-          setShowText(!showText);
-        }}
+        onPress={onPress}
         color={'green'}
       />
       {showText && <Text>{removeHTML(description)}</Text>}
