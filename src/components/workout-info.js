@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import {StyleSheet, Button, Alert, Text} from 'react-native';
+import {removeHTML} from '../api/utils';
 
 const styles = StyleSheet.create({
   text: {
@@ -21,7 +22,7 @@ export const WorkoutInfo = ({name, description}) => {
         }}
         color={'green'}
       />
-      {showText && <Text>{description}</Text>}
+      {showText && <Text>{removeHTML(description)}</Text>}
     </>
   );
 };
