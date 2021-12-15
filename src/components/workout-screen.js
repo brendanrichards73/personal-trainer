@@ -8,9 +8,12 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'space-around',
-    alignItems: 'flex-start',
-    marginLeft: 20,
+    alignItems: 'center',
     paddingVertical: 10,
+  },
+  workoutInfo: {
+    justifyContent: 'flex-start',
+    padding: 5,
   },
 });
 
@@ -36,6 +39,7 @@ export const WorkoutScreen = ({route}) => {
       <ScrollView>
         {exercises.map(({name, description}) => (
           <WorkoutInfo
+            style={styles.workoutInfo}
             name={name}
             description={description}
             showText={currentlySelectedWorkout === name}

@@ -1,19 +1,31 @@
 import React, {useState, useEffect} from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
-import {View, StyleSheet, Button} from 'react-native';
+import {
+  ImageBackground,
+  View,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+} from 'react-native';
 import {getExerciseTypes} from '../api/api';
 import {WorkoutScreen} from '../components/workout-screen';
 
+const image = require('../images/dumbell-image.jpg');
+
 const styles = StyleSheet.create({
-  container: {
+  workoutCategory: {
     flex: 1,
-    justifyContent: 'space-around',
-    alignItems: 'flex-start',
-    marginLeft: 50,
-    marginVertical: 50,
   },
-  button: {
-    width: 300,
+  workoutCategoryName: {
+    margin: 20,
+    fontSize: 32,
+    fontWeight: 'bold',
+    color: 'black',
+  },
+  image: {
+    flex: 1,
+    justifyContent: 'center',
+    opacity: 0.5,
   },
 });
 
@@ -39,16 +51,17 @@ export const FitnessPlans = ({navigation}) => {
     });
   }, []);
   return (
-    <View style={styles.container}>
-      {workouts.map(({id, name}) => (
-        <Button
-          title={name}
-          style={styles.button}
-          onPress={() =>
-            navigation.navigate('WorkoutScreen', {workoutCategoryId: id})
-          }
-        />
-      ))}
+    <View style={styles.workoutCategory}>
+      <ImageBackground source={image} resizeMode="cover" style={styles.image}>
+        {workouts.map(({id, name}) => (
+          <TouchableOpacity
+            onPress={() =>
+              navigation.navigate('WorkoutScreen', {workoutCategoryId: id})
+            }>
+            <Text style={styles.workoutCategoryName}>{name}</Text>
+          </TouchableOpacity>
+        ))}
+      </ImageBackground>
     </View>
   );
 };
