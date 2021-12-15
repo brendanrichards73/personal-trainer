@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
 export const Home = () => {
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>Luke Morris Fitness</Text>
+      <Text style={styles.text}>My Fitness</Text>
     </View>
   );
 };
