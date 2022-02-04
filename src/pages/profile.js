@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React, {useState} from 'react';
 import {Text, View, StyleSheet, Button} from 'react-native';
 import {TextInput} from 'react-native-gesture-handler';
@@ -22,9 +23,19 @@ const styles = StyleSheet.create({
 export const Profile = () => {
   const [text, setText] = useState('');
   const [password, setPassword] = useState('');
-  const register = () => {
+
+  const apiCallPost = async () => {
+    const response = await axios.post(
+      'https://ymwtnm8t5f.execute-api.us-east-1.amazonaws.com/prod/register',
+    );
+    return response.data;
+  };
+
+  const register = async () => {
     console.log('Entered text', text);
     console.log('Entered password', password);
+    const result = await apiCallPost();
+    console.log('Response =', result);
   };
 
   return (
