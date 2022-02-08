@@ -5,15 +5,17 @@ const handsClappingImage = require('../images/Hands-Clapping-Chaulk-Kettlebell.j
 
 const styles = StyleSheet.create({
   text: {
-    color: 'black',
+    paddingLeft: 20,
+    color: 'white',
     fontFamily: 'Milote',
     fontSize: 45,
-    textAlign: 'center',
+    textAlign: 'left',
+    fontWeight: 'bold',
   },
   image: {
     flex: 1,
     justifyContent: 'center',
-    opacity: 0.4,
+    // opacity: 0.5,
   },
 });
 

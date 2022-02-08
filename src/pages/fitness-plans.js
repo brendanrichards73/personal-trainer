@@ -9,24 +9,36 @@ import {
 } from 'react-native';
 import {getExerciseTypes} from '../api/api';
 import {WorkoutScreen} from '../components/workout-screen';
+import {TouchableHighlight} from 'react-native-gesture-handler';
 
 const image = require('../images/dumbell-image.jpg');
 
 const styles = StyleSheet.create({
-  workoutCategory: {
+  container: {
     flex: 1,
   },
   workoutCategoryName: {
     margin: 15,
-    fontSize: 32,
+    fontSize: 18,
     fontWeight: 'bold',
-    color: 'black',
+    color: 'white',
     alignContent: 'center',
+    paddingLeft: 30,
+  },
+  workoutCategoryContainer: {
+    justifyContent: 'center',
+    height: 50,
+    width: '45%',
+    borderColor: 'white',
+    borderWidth: 2,
+    marginBottom: 15,
+    marginLeft: 20,
+    backgroundColor: '#778899',
   },
   image: {
     flex: 1,
     justifyContent: 'center',
-    opacity: 0.3,
+    // opacity: 0.3,
   },
 });
 
@@ -75,14 +87,16 @@ export const FitnessPlans = ({navigation}) => {
     });
   }, []);
   return (
-    <View style={styles.workoutCategory}>
+    <View style={styles.container}>
       <ImageBackground source={image} resizeMode="cover" style={styles.image}>
         {workouts.map(({id, name}) => (
           <TouchableOpacity
             onPress={() =>
               navigation.navigate('Workout Screen', {workoutCategoryId: id})
             }>
-            <Text style={styles.workoutCategoryName}>{name}</Text>
+            <View style={styles.workoutCategoryContainer}>
+              <Text style={styles.workoutCategoryName}>{name}</Text>
+            </View>
           </TouchableOpacity>
         ))}
       </ImageBackground>

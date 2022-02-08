@@ -7,18 +7,18 @@ const styles = StyleSheet.create({
     flex: 1,
     marginTop: 20,
     width: 300,
-    backgroundColor: '#d3d3d3',
+    backgroundColor: 'lightgrey',
   },
   text: {
-    paddingTop: 3,
+    marginTop: 3,
     justifyContent: 'center',
   },
   descriptionText: {
-    padding: 10,
+    margin: 10,
     justifyContent: 'center',
     fontWeight: 'bold',
     fontSize: 20,
-    color: '#808080',
+    color: '#778899',
   },
 });
 
@@ -28,8 +28,8 @@ export const WorkoutInfo = ({name, description, showText, onPress}) => {
       <Button
         style={styles.text}
         title={name}
-        color="#808080"
         onPress={onPress}
+        color="#778899"
       />
       {showText && (
         <Text style={styles.descriptionText}>{removeHTML(description)}</Text>

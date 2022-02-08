@@ -1,7 +1,9 @@
 import axios from 'axios';
 import React, {useState} from 'react';
-import {Text, View, StyleSheet, Button} from 'react-native';
+import {Text, View, StyleSheet, Button, ImageBackground} from 'react-native';
 import {TextInput} from 'react-native-gesture-handler';
+
+const kettleBellImage = require('../images/kettlebell-image.jpeg');
 
 // create profile input to store in cloud.
 
@@ -15,8 +17,24 @@ const styles = StyleSheet.create({
     width: 200,
     height: 100,
     borderWidth: 1,
-    borderColor: 'grey',
+    borderColor: 'white',
     marginVertical: 20,
+  },
+  image: {
+    flex: 1,
+    justifyContent: 'center',
+    // opacity: 0.5,
+  },
+  text: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    color: 'white',
+  },
+  textInput: {
+    fontFamily: 'Cochin',
+    fontWeight: 'bold',
+    color: 'white',
+    fontSize: 18,
   },
 });
 
@@ -39,22 +57,29 @@ export const Profile = () => {
   };
 
   return (
-    <View style={styles.container}>
-      <Text fontFamily="Cochin">Register</Text>
-      <View style={styles.loginContainer}>
-        <TextInput
-          placeholder="Name"
-          fontFamily="Cochin"
-          onChangeText={(newText) => setText(newText)}
-        />
-        <TextInput
-          placeholder="Password"
-          fontFamily="Cochin"
-          secureTextEntry
-          onChangeText={(newPassword) => setPassword(newPassword)}
-        />
+    <ImageBackground
+      source={kettleBellImage}
+      resizeMode="cover"
+      style={styles.image}>
+      <View style={styles.container}>
+        <Text style={styles.text}>Register</Text>
+        <View style={styles.loginContainer}>
+          <TextInput
+            placeholder="Name"
+            placeholderTextColor="white"
+            style={styles.textInput}
+            onChangeText={(newText) => setText(newText)}
+          />
+          <TextInput
+            placeholder="Password"
+            placeholderTextColor="white"
+            style={styles.textInput}
+            secureTextEntry
+            onChangeText={(newPassword) => setPassword(newPassword)}
+          />
+        </View>
+        <Button title="Enter" onPress={register} />
       </View>
-      <Button title="Enter" onPress={register} />
-    </View>
+    </ImageBackground>
   );
 };
