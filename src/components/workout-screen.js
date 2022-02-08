@@ -10,6 +10,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around',
     alignItems: 'center',
     paddingVertical: 10,
+    backgroundColor: '#f5f5f5',
   },
   workoutInfo: {
     justifyContent: 'flex-start',

@@ -17,15 +17,16 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   workoutCategoryName: {
-    margin: 20,
+    margin: 15,
     fontSize: 32,
     fontWeight: 'bold',
     color: 'black',
+    alignContent: 'center',
   },
   image: {
     flex: 1,
     justifyContent: 'center',
-    opacity: 0.5,
+    opacity: 0.3,
   },
 });
 
@@ -34,10 +35,33 @@ const FitnessPlansStack = createStackNavigator();
 export const FitnessPlansStackScreen = () => {
   return (
     <FitnessPlansStack.Navigator>
-      <FitnessPlansStack.Screen name="FitnessPlans" component={FitnessPlans} />
       <FitnessPlansStack.Screen
-        name="WorkoutScreen"
+        name="Fitness Plans"
+        component={FitnessPlans}
+        options={{
+          title: 'Fitness Plans',
+          headerStyle: {
+            backgroundColor: '#808080',
+          },
+          headerTintColor: '#fff',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          },
+        }}
+      />
+      <FitnessPlansStack.Screen
+        name="Workout Screen"
         component={WorkoutScreen}
+        options={{
+          title: 'Workouts',
+          headerStyle: {
+            backgroundColor: '#808080',
+          },
+          headerTintColor: '#fff',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          },
+        }}
       />
     </FitnessPlansStack.Navigator>
   );
@@ -56,7 +80,7 @@ export const FitnessPlans = ({navigation}) => {
         {workouts.map(({id, name}) => (
           <TouchableOpacity
             onPress={() =>
-              navigation.navigate('WorkoutScreen', {workoutCategoryId: id})
+              navigation.navigate('Workout Screen', {workoutCategoryId: id})
             }>
             <Text style={styles.workoutCategoryName}>{name}</Text>
           </TouchableOpacity>

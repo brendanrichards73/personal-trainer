@@ -38,8 +38,11 @@ export default function App({deps = dependencies}) {
           },
         })}
         tabBarOptions={{
-          activeTintColor: 'tomato',
-          inactiveTintColor: 'gray',
+          activeTintColor: '#00ff7f',
+          inactiveTintColor: 'white',
+          style: {
+            backgroundColor: '#808080',
+          },
         }}>
         <Tab.Screen name="Home" component={Home} />
         <Tab.Screen name="FitnessPlans" component={FitnessPlansStackScreen} />
