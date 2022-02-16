@@ -19,11 +19,12 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: 'white',
     marginVertical: 20,
+    backgroundColor: 'grey',
+    opacity: 0.8,
   },
   image: {
     flex: 1,
     justifyContent: 'center',
-    // opacity: 0.5,
   },
   text: {
     fontSize: 24,
@@ -45,6 +46,7 @@ export const Profile = () => {
   const apiCallPost = async () => {
     const response = await axios.post(
       'https://ymwtnm8t5f.execute-api.us-east-1.amazonaws.com/prod/register',
+      {text, password},
     );
     return response.data;
   };
@@ -65,13 +67,13 @@ export const Profile = () => {
         <Text style={styles.text}>Register</Text>
         <View style={styles.loginContainer}>
           <TextInput
-            placeholder="Name"
+            placeholder="Name..."
             placeholderTextColor="white"
             style={styles.textInput}
             onChangeText={(newText) => setText(newText)}
           />
           <TextInput
-            placeholder="Password"
+            placeholder="Password..."
             placeholderTextColor="white"
             style={styles.textInput}
             secureTextEntry
