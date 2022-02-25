@@ -48,6 +48,7 @@ export const Profile = () => {
       'https://ymwtnm8t5f.execute-api.us-east-1.amazonaws.com/prod/register',
       {text, password},
     );
+    console.log('Status Code', response.status);
     return response.data;
   };
 
