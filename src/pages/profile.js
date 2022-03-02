@@ -44,12 +44,26 @@ export const Profile = () => {
   const [password, setPassword] = useState('');
 
   const apiCallPost = async () => {
-    const response = await axios.post(
-      'https://ymwtnm8t5f.execute-api.us-east-1.amazonaws.com/prod/register',
-      {text, password},
-    );
-    console.log('Status Code', response.status);
-    return response.data;
+    try {
+      const response = await axios.post(
+        'https://ymwtnm8t5f.execute-api.us-east-1.amazonaws.com/prod/register',
+        {text, password},
+      );
+      // TODO: display user message showing the status of their register.
+      if (response.status === 201) {
+        console.log('created user');
+      }
+      console.log('Status Code', response.status);
+      return response.data;
+    } catch (error) {
+      console.error(error);
+      if (error.response.status === 400) {
+        console.log('user name already taken');
+      }
+      if (error.response.status === 503) {
+        console.log('something went wrong');
+      }
+    }
   };
 
   const register = async () => {
