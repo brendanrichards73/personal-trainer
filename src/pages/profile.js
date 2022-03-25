@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, {useState} from 'react';
 import {Text, View, StyleSheet, Button, ImageBackground} from 'react-native';
 import {TextInput} from 'react-native-gesture-handler';
+import {MessageContainer} from '../components/message-container';
 
 const kettleBellImage = require('../images/kettlebell-image.jpeg');
 
@@ -42,6 +43,7 @@ const styles = StyleSheet.create({
 export const Profile = () => {
   const [text, setText] = useState('');
   const [password, setPassword] = useState('');
+  const [message, setMessage] = useState('');
 
   const apiCallPost = async () => {
     try {
@@ -51,17 +53,20 @@ export const Profile = () => {
       );
       // TODO: display user message showing the status of their register.
       if (response.status === 201) {
-        console.log('created user');
+        // console.log('created user');
+        setMessage('Sign up successful!');
       }
       console.log('Status Code', response.status);
       return response.data;
     } catch (error) {
       console.error(error);
       if (error.response.status === 400) {
-        console.log('user name already taken');
+        // console.log('user name already taken');
+        setMessage('The user name is already in use.');
       }
       if (error.response.status === 503) {
-        console.log('something went wrong');
+        // console.log('something went wrong');
+        setMessage('Something went wrong!');
       }
     }
   };
@@ -96,6 +101,7 @@ export const Profile = () => {
           />
         </View>
         <Button title="Enter" onPress={register} />
+        <MessageContainer message={message} />
       </View>
     </ImageBackground>
   );
