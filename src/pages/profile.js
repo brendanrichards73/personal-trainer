@@ -44,6 +44,7 @@ export const Profile = () => {
   const [text, setText] = useState('');
   const [password, setPassword] = useState('');
   const [message, setMessage] = useState('');
+  const [backgroundColor, setBackgroundColor] = useState('');
 
   const apiCallPost = async () => {
     try {
@@ -55,6 +56,7 @@ export const Profile = () => {
       if (response.status === 201) {
         // console.log('created user');
         setMessage('Sign up successful!');
+        setBackgroundColor('#32a852');
       }
       console.log('Status Code', response.status);
       return response.data;
@@ -63,10 +65,12 @@ export const Profile = () => {
       if (error.response.status === 400) {
         // console.log('user name already taken');
         setMessage('The user name is already in use.');
+        setBackgroundColor('#e36c3d');
       }
       if (error.response.status === 503) {
         // console.log('something went wrong');
         setMessage('Something went wrong!');
+        setBackgroundColor('#c70906');
       }
     }
   };
@@ -101,7 +105,7 @@ export const Profile = () => {
           />
         </View>
         <Button title="Enter" onPress={register} />
-        <MessageContainer message={message} />
+        <MessageContainer message={message} backgroundColor={backgroundColor} />
       </View>
     </ImageBackground>
   );
