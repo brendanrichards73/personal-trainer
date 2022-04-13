@@ -1,11 +1,11 @@
 import React from 'react';
 import {Text, View} from 'react-native';
 
-// TODO: style the messageContainer and clear messages
-
 const styles = (backgroundColor) => ({
   container: {
+    alignItems: 'center',
     marginTop: 5,
+    borderRadius: 5,
     justifyContent: 'center',
     padding: 10,
     width: '75%',
@@ -13,8 +13,9 @@ const styles = (backgroundColor) => ({
     backgroundColor: `${backgroundColor}`,
   },
   text: {
-    fontSize: 20,
+    fontSize: 16,
     color: 'white',
+    fontFamily: 'serif',
   },
 });
 

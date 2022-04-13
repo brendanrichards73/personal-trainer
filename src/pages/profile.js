@@ -1,12 +1,22 @@
 import axios from 'axios';
 import React, {useState} from 'react';
-import {Text, View, StyleSheet, Button, ImageBackground} from 'react-native';
+import {
+  Text,
+  View,
+  StyleSheet,
+  TouchableOpacity,
+  ImageBackground,
+} from 'react-native';
 import {TextInput} from 'react-native-gesture-handler';
+import {DotIndicator} from 'react-native-indicators';
 import {MessageContainer} from '../components/message-container';
 
 const kettleBellImage = require('../images/kettlebell-image.jpeg');
 
-// create profile input to store in cloud.
+// TODO: clear messages (cross icon or fade out)
+// TODO: login successful transitions user to a new screen
+// TODO: fix bug with receiving a 504 (when sending empty fields) in api and in handling in app.
+// TODO: Move api to cdk
 
 const styles = StyleSheet.create({
   container: {
@@ -15,7 +25,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   loginContainer: {
-    width: 200,
+    width: '75%',
     height: 100,
     borderWidth: 1,
     borderColor: 'white',
@@ -38,6 +48,21 @@ const styles = StyleSheet.create({
     color: 'white',
     fontSize: 18,
   },
+  buttonContainer: {
+    marginVertical: 20,
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: '40%',
+    height: 40,
+    backgroundColor: '#2097f7',
+    borderColor: 'white',
+    borderWidth: 1,
+    borderRadius: 20,
+  },
+  buttonText: {
+    fontSize: 18,
+    color: 'white',
+  },
 });
 
 export const Profile = () => {
@@ -45,41 +70,35 @@ export const Profile = () => {
   const [password, setPassword] = useState('');
   const [message, setMessage] = useState('');
   const [backgroundColor, setBackgroundColor] = useState('');
+  const [loading, setLoading] = useState(false);
 
-  const apiCallPost = async () => {
+  const registerUser = async () => {
+    setLoading(true);
     try {
       const response = await axios.post(
         'https://ymwtnm8t5f.execute-api.us-east-1.amazonaws.com/prod/register',
         {text, password},
       );
-      // TODO: display user message showing the status of their register.
       if (response.status === 201) {
-        // console.log('created user');
         setMessage('Sign up successful!');
-        setBackgroundColor('#32a852');
+        setBackgroundColor('#a8f25e');
       }
-      console.log('Status Code', response.status);
       return response.data;
     } catch (error) {
       console.error(error);
       if (error.response.status === 400) {
-        // console.log('user name already taken');
-        setMessage('The user name is already in use.');
-        setBackgroundColor('#e36c3d');
+        setMessage(
+          'The user name is already in use!\nPlease chose an different name.',
+        );
+        setBackgroundColor('#ff6700');
       }
       if (error.response.status === 503) {
-        // console.log('something went wrong');
         setMessage('Something went wrong!');
         setBackgroundColor('#c70906');
       }
+    } finally {
+      setLoading(false);
     }
-  };
-
-  const register = async () => {
-    console.log('Entered text', text);
-    console.log('Entered password', password);
-    const result = await apiCallPost();
-    console.log('Response =', result);
   };
 
   return (
@@ -104,7 +123,13 @@ export const Profile = () => {
             onChangeText={(newPassword) => setPassword(newPassword)}
           />
         </View>
-        <Button title="Enter" onPress={register} />
+
+        <TouchableOpacity style={styles.buttonContainer} onPress={registerUser}>
+          <Text style={styles.buttonText}>
+            {loading ? <DotIndicator color="white" size={5} /> : 'Enter'}
+          </Text>
+        </TouchableOpacity>
+
         <MessageContainer message={message} backgroundColor={backgroundColor} />
       </View>
     </ImageBackground>
