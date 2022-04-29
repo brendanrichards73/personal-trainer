@@ -13,11 +13,6 @@ import {MessageContainer} from '../components/message-container';
 
 const kettleBellImage = require('../images/kettlebell-image.jpeg');
 
-// TODO: clear messages (cross icon or fade out)
-// TODO: login successful transitions user to a new screen
-// TODO: fix bug with receiving a 504 (when sending empty fields) in api and in handling in app.
-// TODO: Move api to cdk
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
