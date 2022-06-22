@@ -71,7 +71,7 @@ export const Profile = () => {
     setLoading(true);
     try {
       const response = await axios.post(
-        'https://ymwtnm8t5f.execute-api.us-east-1.amazonaws.com/prod/register',
+        'https://gloncfbtxi.execute-api.us-east-1.amazonaws.com/prod/register',
         {text, password},
       );
       if (response.status === 201) {

@@ -7,13 +7,20 @@ import * as cdk from 'aws-cdk-lib';
 import { join } from 'path';
 import { LambdaIntegration } from 'aws-cdk-lib/aws-apigateway';
 
-//TODO: Pass DB name to Lambda
+//TODO: add a login endpoint
+//TODO: refactor js code
+//TODO: convert JS into TypeScript
 
 export class CdkStack extends Stack {
   constructor(scope: Construct, id: string, props?: StackProps) {
     super(scope, id, props);
 
     // The code that defines your stack goes here
+    const table = new dynamodb.Table(this, id, {
+      removalPolicy: cdk.RemovalPolicy.DESTROY,
+      partitionKey: {name: 'userID', type: dynamodb.AttributeType.STRING},
+      tableName: 'BrendanFitnessTable',
+    });
 
     const lambdaFunction = new lambda.Function(this, 'lambda-function', {
       runtime: lambda.Runtime.NODEJS_14_X,
@@ -21,13 +28,12 @@ export class CdkStack extends Stack {
       timeout: Duration.seconds(5),
       handler: 'registration-handler.handler',
       code: lambda.Code.fromAsset(join(__dirname, '../../src/lambda')),
+      environment: {
+        TableName: table.tableName 
+      }
     });
 
-    const table = new dynamodb.Table(this, id, {
-      removalPolicy: cdk.RemovalPolicy.DESTROY,
-      partitionKey: {name: 'userID', type: dynamodb.AttributeType.STRING},
-      tableName: 'BrendanFitnessTable',
-    });
+    table.grantReadWriteData(lambdaFunction);
     
     const api = new apigateway.RestApi(this, 'api', {
       description: 'Brendan Fitness App User Api',

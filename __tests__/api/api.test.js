@@ -1,7 +1,5 @@
 import {removeHTML} from '../../src/api/utils';
 
-//TODO - reduce down to one test - loop over the tags
-
 describe('Sanitise the data response from api calls', () => {
   test.each([['p'], ['em'], ['ol'], ['li']])(
     'removes %s from the response',

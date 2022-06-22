@@ -2,7 +2,7 @@ var AWS = require('aws-sdk');
 AWS.config.update({region: 'us-east-1'});
 
 exports.handler = async (event) => {
-  console.log('EVENT', event);
+  console.log('TableName', process.env.TableName);
   const body = JSON.parse(event.body);
 
   var ddb = new AWS.DynamoDB();
@@ -13,7 +13,7 @@ exports.handler = async (event) => {
         S: body.text,
       },
     },
-    TableName: 'brendan-fitness-database',
+    TableName: process.env.TableName,
   };
   try {
     const checkUserID = await ddb.getItem(checkParams).promise();
@@ -26,7 +26,7 @@ exports.handler = async (event) => {
       };
     }
     var putParams = {
-      TableName: 'brendan-fitness-database',
+      TableName: process.env.TableName,
       Item: {
         userID: {S: body.text},
         password: {S: body.password},
